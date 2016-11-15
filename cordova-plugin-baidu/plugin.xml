@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<plugin id="cordova-plugin-BaiduBaseMap" verstion="0.0.1">
+    <name>BaiduMap</name>
+    <description>BaiduMap Plugin</description>
+
+    <engines>
+        <engine name="cordova" version=">=3.5.0" />
+    </engines>
+
+    <!--js-->
+    <js-module src="www/baidu.js">
+        <clobbers target="BaiduMap" />
+    </js-module>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CDVBaiduMap">
+                <param name="ios-package" value="CDVBaiduMap" />
+
+            </feature>
+
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+            <dict>
+                <key>NSAllowsArbitraryLoads</key>
+                <true/>
+            </dict>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+            <string>只有开启定位功能才能正常使用百度导航</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>location</string>
+            </array>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>baidumap</string>
+            </array>
+        </config-file>
+
+
+        <framework src="CoreLocation.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="OpenGLES.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="Security.framework" />
+        <framework src="libsqlite3.0.tbd" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="libstdc++.6.0.9.tbd" />
+
+        <framework src="src/ios/libs/BaiduMapAPI_Base.framework" custom="true" embed="true" />
+        <framework src="src/ios/libs/BaiduMapAPI_Cloud.framework" custom="true" embed="true" />
+        <framework src="src/ios/libs/BaiduMapAPI_Location.framework" custom="true" embed="true" />
+        <framework src="src/ios/libs/BaiduMapAPI_Map.framework" custom="true" embed="true" />
+        <framework src="src/ios/libs/BaiduMapAPI_Radar.framework" custom="true" embed="true" />
+        <framework src="src/ios/libs/BaiduMapAPI_Search.framework" custom="true" embed="true" />
+        <framework src="src/ios/libs/BaiduMapAPI_Utils.framework" custom="true" embed="true" />
+
+        <source-file src="src/ios/CDVBaiduMap.h"/>
+        <source-file src="src/ios/CDVBaiduMap.m"/>
+        <source-file src="src/ios/UIImage+Rotate.h"/>
+        <source-file src="src/ios/UIImage+Rotate.m"/>
+        <source-file src="src/ios/BaseMapViewController.h"/>
+        <source-file src="src/ios/BaseMapViewController.mm"/>
+        <source-file src="src/ios/ChooseAddressVC.h"/>
+        <source-file src="src/ios/ChooseAddressVC.m"/>
+    </platform>
+
+</plugin>
